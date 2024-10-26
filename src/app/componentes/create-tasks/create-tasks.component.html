@@ -1,0 +1,28 @@
+<mat-card>
+  <h2>{{ isEditMode ? 'Edit Task' : 'New Task' }}</h2>
+  <form (ngSubmit)="saveTask()" class="task-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" [(ngModel)]="taskForm.title" name="title" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput type="text" [(ngModel)]="taskForm.description" name="description" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="taskForm.estatus" name="estatus" required>
+        <mat-option value="OPEN">OPEN</mat-option>
+        <mat-option value="GO">GO</mat-option>
+        <mat-option value="CLOSE">CLOSE</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Update' : 'Add' }} Task</button>
+      <button mat-button type="button" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+</mat-card>
