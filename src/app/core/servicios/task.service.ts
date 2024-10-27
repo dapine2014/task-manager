@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ITasks} from '../interfaces/ITasks';
 import {Observable} from 'rxjs';
+import {Content} from '../interfaces/Content';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private  apiUrl:string = "http://localhost:8080/service/rest";
+  private apiUrl:string = "http://localhost:8080/service/rest";
   constructor(private http: HttpClient) { }
 
   createTask(task: ITasks): Observable<ITasks> {
-    return this.http.post<ITasks>('/api/task', task);
+    return this.http.post<ITasks>(`${this.apiUrl}/api/task`, task);
   }
 
-  getTask(page:number, size:number): Observable<ITasks> {
-    return this.http.get<ITasks>(`/api/tasks?page=${page}&size=${size}`);
+
+  getTasks(): Observable<ITasks[]> {
+    return this.http.get<ITasks[]>(`${this.apiUrl}/api/task/all`);
   }
 
   updateTask(id:number ,task: ITasks): Observable<ITasks> {

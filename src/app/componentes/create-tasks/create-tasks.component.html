@@ -15,14 +15,70 @@
       <mat-label>Status</mat-label>
       <mat-select [(ngModel)]="taskForm.estatus" name="estatus" required>
         <mat-option value="OPEN">OPEN</mat-option>
-        <mat-option value="GO">GO</mat-option>
+        <mat-option value="STOP">STOP</mat-option>
+        <mat-option value="IN_PROGRESS">IN PROGRESS</mat-option>
+        <mat-option value="TEST">TEST</mat-option>
         <mat-option value="CLOSE">CLOSE</mat-option>
       </mat-select>
     </mat-form-field>
 
     <div class="form-buttons">
-      <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Update' : 'Add' }} Task</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.title || !taskForm.description">{{ isEditMode ? 'Update' : 'Add' }} Task</button>
       <button mat-button type="button" (click)="resetForm()">Cancel</button>
     </div>
   </form>
 </mat-card>
+
+<mat-card class="task-list-card">
+  <h3>Task List</h3>
+  <mat-list>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> #. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="task">
+        <th mat-header-cell *matHeaderCellDef> Task </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.estatus}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Date Update </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaActualizacion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef> Accion </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="editTask(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteTask(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </mat-list>
+</mat-card>
+
