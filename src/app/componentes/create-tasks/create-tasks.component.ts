@@ -65,13 +65,13 @@ export class CreateTasksComponent implements OnInit{
     fechaCreacion: new Date(),
     fechaActualizacion: new Date()
   };
-  @ViewChild(MatTable) table?: MatTable<ITasks[]>;
+  @ViewChild(MatTable) table?: { renderRows: () => void };
 
   ngOnInit(): void {
         this.loadTasks();
     }
 
-  constructor(private service: TaskService,private cdr: ChangeDetectorRef) {}
+  constructor(private service: TaskService, public cdr: ChangeDetectorRef) {}
 
   saveTask() {
     if (this.isEditMode) {
