@@ -7,15 +7,28 @@
   background-size: cover;
 }
 
+/* Estilos generales para centrar el formulario */
+body, html {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal para el formulario */
 .login-container {
+  width: 100%;
   max-width: 400px;
-  margin: 0 auto;
   padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
 }
 
+/* Estilos del formulario y sus campos */
 form div {
   margin-bottom: 1rem;
 }
@@ -23,6 +36,7 @@ form div {
 label {
   display: block;
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 input {
@@ -32,6 +46,7 @@ input {
   border-radius: 4px;
 }
 
+/* Botón de envío */
 button {
   width: 100%;
   padding: 0.7rem;
@@ -41,3 +56,8 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+button:hover {
+  background-color: #0056b3;
+}
+
