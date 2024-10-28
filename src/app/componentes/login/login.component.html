@@ -1,0 +1,25 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="login-container">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Iniciar Sesión</h2>
+        <div>
+          <label for="username">Usuario</label>
+          <input id="username" formControlName="username" type="text" required/>
+        </div>
+        <div>
+          <label for="password">Contraseña</label>
+          <input id="password" formControlName="password" type="password" required/>
+        </div>
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

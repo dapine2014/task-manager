@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { CreateTasksComponent } from './componentes/create-tasks/create-tasks.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
+    LoginComponent,
     CreateTasksComponent,
     BrowserModule,
     AppRoutingModule,
